@@ -4,6 +4,7 @@
 # export CLUSTER_SECRET=$(od -vN 32 -An -tx1 /dev/urandom | tr -d ' \n')
 # other nodes must use the same secret:
 # echo $CLUSTER_SECRET
+# current secret: 0352322f72d19b0827bd76923c225199e9c2da84847601fc33803d84894b3b78
 
 set -e
 
@@ -40,7 +41,7 @@ sudo chown ubuntu:ubuntu $IPFS_PATH
 ipfs init -p server
 # ipfs config Datastore.StorageMax 100GB
 # uncomment if you want direct access to the instance's gateway
-ipfs config Addresses.Gateway /ip4/0.0.0.0/tcp/8080
+# ipfs config Addresses.Gateway /ip4/0.0.0.0/tcp/8080
 
 # init ipfs-cluster-service
 sudo mkdir -p $IPFS_CLUSTER_PATH
