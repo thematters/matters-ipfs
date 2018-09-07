@@ -11,7 +11,7 @@ set -e
 [ -z "$CLUSTER_SECRET" ] && echo "Need to set CLUSTER_SECRET" && exit 1;
 
 echo 'export IPFS_PATH=~/.ipfs' >>~/.bash_profile
-echo 'export IPFS_CLUSTER_PATH=~/.ipfs-cluster/service.json' >>~/.bash_profile
+echo 'export IPFS_CLUSTER_PATH=~/.ipfs-cluster' >>~/.bash_profile
 source ~/.bash_profile
 
 # init ipfs
