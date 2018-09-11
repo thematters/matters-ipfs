@@ -10,8 +10,8 @@ set -e
 
 [ -z "$CLUSTER_SECRET" ] && echo "Need to set CLUSTER_SECRET" && exit 1;
 
-echo 'export IPFS_PATH=~/.ipfs' >>~/.bash_profile
-echo 'export IPFS_CLUSTER_PATH=~/.ipfs-cluster' >>~/.bash_profile
+echo 'export IPFS_PATH=/data/ipfs' >>~/.bash_profile
+echo 'export IPFS_CLUSTER_PATH=/data/ipfs-cluster' >>~/.bash_profile
 source ~/.bash_profile
 
 # init ipfs
@@ -26,7 +26,7 @@ ipfs init -p server
 sudo mkdir -p $IPFS_CLUSTER_PATH
 sudo chown ubuntu:ubuntu $IPFS_CLUSTER_PATH
 ipfs-cluster-service init
-if [ ! -z "$CLUSTER_BOOTSTRAP" ]; then
-  sed -i -e "s;\"bootstrap\": \[\];\"bootstrap\": [\"${CLUSTER_BOOTSTRAP}\"];" "${IPFS_CLUSTER_PATH}/service.json"
-fi
-sed -i -e 's;127\.0\.0\.1/tcp/9095;0.0.0.0/tcp/9095;' "${IPFS_CLUSTER_PATH}/service.json"
+
+# move service files
+sudo mv ipfs.service /lib/systemd/system/ipfs.service
+sudo mv ipfs-cluster.service /lib/systemd/system/ipfs-cluster.service
