@@ -7,7 +7,7 @@
 # current secret: export CLUSTER_SECRET=0352322f72d19b0827bd76923c225199e9c2da84847601fc33803d84894b3b78
 
 # set bootstrap node to first node in all nodes other than first
-# export CLUSTER_BOOTSTRAP="/ip4/13.251.59.100/tcp/9096/ipfs/QmdsWJxFz6vAyZ9QGyge7T9bqu5S8yVZx7wZUgUkdY7tLX"
+# export CLUSTER_BOOTSTRAP=/ip4/13.251.59.100/tcp/9096/ipfs/QmdsWJxFz6vAyZ9QGyge7T9bqu5S8yVZx7wZUgUkdY7tLX
 
 set -e
 
@@ -63,21 +63,6 @@ Environment="IPFS_CLUSTER_PATH=/data/ipfs-cluster"
 [Install]
 WantedBy=multi-user.target
 EOL
-
-# cat >./test.txt <<EOL
-# [Unit]
-# Description=ipfs-cluster-service daemon
-# Requires=ipfs.service
-# After=ipfs.service
-# [Service]
-# ExecStart=/usr/local/bin/ipfs-cluster-service daemon --bootstrap ${CLUSTER_BOOTSTRAP}
-# Restart=always
-# User=ubuntu
-# Group=ubuntu
-# Environment="IPFS_CLUSTER_PATH=/data/ipfs-cluster"
-# [Install]
-# WantedBy=multi-user.target
-# EOL
 
 # enable the new services
 sudo systemctl daemon-reload
