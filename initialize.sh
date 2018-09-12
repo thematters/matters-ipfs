@@ -19,7 +19,7 @@ source ~/.bash_profile
 
 # init ipfs
 sudo mkdir -p $IPFS_PATH
-sudo chown ubuntu:ubuntu $IPFS_PATH
+sudo chown -R ubuntu:ubuntu $IPFS_PATH
 ipfs init -p server
 ipfs config Datastore.StorageMax 100GB
 # uncomment if you want direct access to the instance's gateway
@@ -27,7 +27,7 @@ ipfs config Datastore.StorageMax 100GB
 
 # init ipfs-cluster-service
 sudo mkdir -p $IPFS_CLUSTER_PATH
-sudo chown ubuntu:ubuntu $IPFS_CLUSTER_PATH
+sudo chown -R ubuntu:ubuntu $IPFS_CLUSTER_PATH
 ipfs-cluster-service init
 # add bootstraping node
 # if [ ! -z "$CLUSTER_BOOTSTRAP" ]; then
@@ -75,6 +75,7 @@ sudo systemctl start ipfs-cluster
 # check
 # sudo systemctl status ipfs
 # sudo systemctl status ipfs-cluster
+# ipfs-cluster-ctl peers ls
 
 # log
 # journalctl -u ipfs-cluster --follow
