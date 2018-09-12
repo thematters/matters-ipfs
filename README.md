@@ -13,4 +13,4 @@ ipfs-cluster-service path: /data/ipfs-cluster
 
 ## Current node 0 multiaddress
 
-/ip4/13.251.59.100/tcp/9096/ipfs/Qmdji8g2PDkbXzrux75pHijXWVsEh5C4tmwqGVgrdXXW2n
+/ip4/13.251.59.100/tcp/9096/ipfs/QmPCnY9KQK2d623zpkezMofUqZ4Ji2VwxpthPBENyuNT52

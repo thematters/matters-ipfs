@@ -7,7 +7,7 @@
 # current secret: export CLUSTER_SECRET=0352322f72d19b0827bd76923c225199e9c2da84847601fc33803d84894b3b78
 
 # set bootstrap node to first node in all nodes other than first
-# export CLUSTER_BOOTSTRAP=/ip4/13.251.59.100/tcp/9096/ipfs/Qmdji8g2PDkbXzrux75pHijXWVsEh5C4tmwqGVgrdXXW2n
+# export CLUSTER_BOOTSTRAP=/ip4/13.251.59.100/tcp/9096/ipfs/QmPCnY9KQK2d623zpkezMofUqZ4Ji2VwxpthPBENyuNT52
 
 set -e
 
@@ -90,6 +90,7 @@ sudo systemctl enable ipfs.service
 sudo systemctl enable ipfs-cluster.service
 
 # start the ipfs-cluster-service daemon (the ipfs daemon will be started first)
+sudo systemctl start ipfs
 sudo systemctl start ipfs-cluster
 
 # check

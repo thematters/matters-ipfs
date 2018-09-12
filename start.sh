@@ -10,5 +10,6 @@ sudo systemctl daemon-reload
 sudo systemctl enable ipfs.service
 sudo systemctl enable ipfs-cluster.service
 
-# start the ipfs-cluster-service daemon (the ipfs daemon will be started first)
+# start the ipfs-cluster-service daemon
+sudo systemctl start ipfs
 sudo systemctl start ipfs-cluster
