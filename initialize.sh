@@ -36,7 +36,7 @@ ipfs-cluster-service init
 sed -i -e 's;127\.0\.0\.1/tcp/9095;0.0.0.0/tcp/9095;' "${IPFS_CLUSTER_PATH}/service.json"
 
 # ipfs systemctl service
-cat >/lib/systemd/system/ipfs.service <<EOL
+sudo bash -c 'cat >/lib/systemd/system/ipfs.service <<EOL
 [Unit]
 Description=ipfs daemon
 [Service]
@@ -47,9 +47,10 @@ Group=ubuntu
 Environment="IPFS_PATH=/data/ipfs"
 [Install]
 WantedBy=multi-user.target
-EOL
+EOL'
 
 # ipfs-cluster systemctl service
+# peerstore not working, current work around
 if [ ! -z "$CLUSTER_BOOTSTRAP" ]
 then
   sudo -E bash -c 'cat >/lib/systemd/system/ipfs-cluster.service <<EOL
@@ -67,7 +68,7 @@ Environment="IPFS_CLUSTER_PATH=/data/ipfs-cluster"
 WantedBy=multi-user.target
 EOL'
 else
-  sudo -E bash -c 'cat >/lib/systemd/system/ipfs-cluster.service <<EOL
+  sudo bash -c 'cat >/lib/systemd/system/ipfs-cluster.service <<EOL
 [Unit]
 Description=ipfs-cluster-service daemon
 Requires=ipfs.service
