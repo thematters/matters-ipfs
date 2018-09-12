@@ -29,10 +29,9 @@ ipfs config Datastore.StorageMax 100GB
 sudo mkdir -p $IPFS_CLUSTER_PATH
 sudo chown ubuntu:ubuntu $IPFS_CLUSTER_PATH
 ipfs-cluster-service init
+# add bootstraping node
 if [ ! -z "$CLUSTER_BOOTSTRAP" ]; then
-  sudo bash -c "cat >${IPFS_CLUSTER_PATH}/peerstore <<EOL
-    ${CLUSTER_BOOTSTRAP}
-    EOL"
+  echo -e ${CLUSTER_BOOTSTRAP} >> ${IPFS_CLUSTER_PATH}/peerstore
 fi
 
 # ipfs systemctl service
