@@ -33,7 +33,7 @@ ipfs-cluster-service init
 # if [ ! -z "$CLUSTER_BOOTSTRAP" ]; then
 #   echo -e ${CLUSTER_BOOTSTRAP} >> ${IPFS_CLUSTER_PATH}/peerstore
 # fi
-sed -i -e 's;127\.0\.0\.1/tcp/9095;0.0.0.0/tcp/9095;' "${IPFS_CLUSTER_PATH}/service.json"
+# sed -i -e 's;127\.0\.0\.1/tcp/9095;0.0.0.0/tcp/9095;' "${IPFS_CLUSTER_PATH}/service.json"
 
 # ipfs systemctl service
 sudo bash -c 'cat >/lib/systemd/system/ipfs.service <<EOL
