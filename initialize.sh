@@ -7,7 +7,7 @@
 # current secret: export CLUSTER_SECRET=0352322f72d19b0827bd76923c225199e9c2da84847601fc33803d84894b3b78
 
 # set bootstrap node to first node in all nodes other than first
-# export CLUSTER_BOOTSTRAP=/ip4/13.251.59.100/tcp/9096/ipfs/QmdsWJxFz6vAyZ9QGyge7T9bqu5S8yVZx7wZUgUkdY7tLX
+# export CLUSTER_BOOTSTRAP=/ip4/13.251.59.100/tcp/9096/ipfs/Qmdji8g2PDkbXzrux75pHijXWVsEh5C4tmwqGVgrdXXW2n
 
 set -e
 
@@ -29,10 +29,11 @@ ipfs config Datastore.StorageMax 100GB
 sudo mkdir -p $IPFS_CLUSTER_PATH
 sudo chown -R ubuntu:ubuntu $IPFS_CLUSTER_PATH
 ipfs-cluster-service init
-# add bootstraping node
+# add bootstrap node
 # if [ ! -z "$CLUSTER_BOOTSTRAP" ]; then
 #   echo -e ${CLUSTER_BOOTSTRAP} >> ${IPFS_CLUSTER_PATH}/peerstore
 # fi
+sed -i -e 's;127\.0\.0\.1/tcp/9095;0.0.0.0/tcp/9095;' "${IPFS_CLUSTER_PATH}/service.json"
 
 # ipfs systemctl service
 cat >/lib/systemd/system/ipfs.service <<EOL
@@ -49,7 +50,9 @@ WantedBy=multi-user.target
 EOL
 
 # ipfs-cluster systemctl service
-cat >/lib/systemd/system/ipfs-cluster.service <<EOL
+if [ ! -z "$CLUSTER_BOOTSTRAP" ]
+then
+  sudo -E bash -c 'cat >/lib/systemd/system/ipfs-cluster.service <<EOL
 [Unit]
 Description=ipfs-cluster-service daemon
 Requires=ipfs.service
@@ -62,7 +65,23 @@ Group=ubuntu
 Environment="IPFS_CLUSTER_PATH=/data/ipfs-cluster"
 [Install]
 WantedBy=multi-user.target
-EOL
+EOL'
+else
+  sudo -E bash -c 'cat >/lib/systemd/system/ipfs-cluster.service <<EOL
+[Unit]
+Description=ipfs-cluster-service daemon
+Requires=ipfs.service
+After=ipfs.service
+[Service]
+ExecStart=/usr/local/bin/ipfs-cluster-service daemon
+Restart=always
+User=ubuntu
+Group=ubuntu
+Environment="IPFS_CLUSTER_PATH=/data/ipfs-cluster"
+[Install]
+WantedBy=multi-user.target
+EOL'
+fi
 
 # enable the new services
 sudo systemctl daemon-reload
