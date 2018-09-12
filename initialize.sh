@@ -30,9 +30,9 @@ sudo mkdir -p $IPFS_CLUSTER_PATH
 sudo chown ubuntu:ubuntu $IPFS_CLUSTER_PATH
 ipfs-cluster-service init
 # add bootstraping node
-if [ ! -z "$CLUSTER_BOOTSTRAP" ]; then
-  echo -e ${CLUSTER_BOOTSTRAP} >> ${IPFS_CLUSTER_PATH}/peerstore
-fi
+# if [ ! -z "$CLUSTER_BOOTSTRAP" ]; then
+#   echo -e ${CLUSTER_BOOTSTRAP} >> ${IPFS_CLUSTER_PATH}/peerstore
+# fi
 
 # ipfs systemctl service
 sudo bash -c 'cat >/lib/systemd/system/ipfs.service <<EOL
@@ -55,7 +55,7 @@ Description=ipfs-cluster-service daemon
 Requires=ipfs.service
 After=ipfs.service
 [Service]
-ExecStart=/usr/local/bin/ipfs-cluster-service daemon
+ExecStart=/usr/local/bin/ipfs-cluster-service daemon --bootstrap /ip4/13.251.59.100/tcp/9096/ipfs/QmdsWJxFz6vAyZ9QGyge7T9bqu5S8yVZx7wZUgUkdY7tLX
 Restart=always
 User=ubuntu
 Group=ubuntu
