@@ -22,6 +22,9 @@ sudo mkdir -p $IPFS_PATH
 sudo chown -R ubuntu:ubuntu $IPFS_PATH
 ipfs init -p server
 ipfs config Datastore.StorageMax 100GB
+## connect to browser-based peer nodes via websocket
+ipfs config Addresses.Swarm '["/ip4/0.0.0.0/tcp/4001", "/ip4/0.0.0.0/tcp/8081/ws", "/ip6/::/tcp/4001"]' --json
+ipfs config --bool Swarm.EnableRelayHop true
 # uncomment if you want direct access to the instance's gateway
 #ipfs config Addresses.Gateway /ip4/0.0.0.0/tcp/8080
 
