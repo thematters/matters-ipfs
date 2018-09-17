@@ -95,11 +95,3 @@ sudo systemctl enable ipfs-cluster.service
 # start the ipfs-cluster-service daemon (the ipfs daemon will be started first)
 sudo systemctl start ipfs
 sudo systemctl start ipfs-cluster
-
-# check
-# sudo systemctl status ipfs
-# sudo systemctl status ipfs-cluster
-# ipfs-cluster-ctl peers ls
-
-# log
-# journalctl -u ipfs-cluster --follow
