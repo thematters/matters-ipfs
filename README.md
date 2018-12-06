@@ -28,5 +28,5 @@ journalctl -u ipfs-cluster --follow
 check peer connections:
 
 ```
-ipfs-cluster-ctl peers ls
+ipfs peers ls
 ```
