@@ -54,44 +54,44 @@ EOL'
 
 # ipfs-cluster systemctl service
 # peerstore not working, current work around
-if [ ! -z "$CLUSTER_BOOTSTRAP" ]
-then
-  sudo -E bash -c 'cat >/lib/systemd/system/ipfs-cluster.service <<EOL
-[Unit]
-Description=ipfs-cluster-service daemon
-Requires=ipfs.service
-After=ipfs.service
-[Service]
-ExecStart=/usr/local/bin/ipfs-cluster-service daemon --bootstrap ${CLUSTER_BOOTSTRAP}
-Restart=always
-User=ubuntu
-Group=ubuntu
-Environment="IPFS_CLUSTER_PATH=/data/ipfs-cluster"
-[Install]
-WantedBy=multi-user.target
-EOL'
-else
-  sudo bash -c 'cat >/lib/systemd/system/ipfs-cluster.service <<EOL
-[Unit]
-Description=ipfs-cluster-service daemon
-Requires=ipfs.service
-After=ipfs.service
-[Service]
-ExecStart=/usr/local/bin/ipfs-cluster-service daemon
-Restart=always
-User=ubuntu
-Group=ubuntu
-Environment="IPFS_CLUSTER_PATH=/data/ipfs-cluster"
-[Install]
-WantedBy=multi-user.target
-EOL'
-fi
+# if [ ! -z "$CLUSTER_BOOTSTRAP" ]
+# then
+#   sudo -E bash -c 'cat >/lib/systemd/system/ipfs-cluster.service <<EOL
+# [Unit]
+# Description=ipfs-cluster-service daemon
+# Requires=ipfs.service
+# After=ipfs.service
+# [Service]
+# ExecStart=/usr/local/bin/ipfs-cluster-service daemon --bootstrap ${CLUSTER_BOOTSTRAP}
+# Restart=always
+# User=ubuntu
+# Group=ubuntu
+# Environment="IPFS_CLUSTER_PATH=/data/ipfs-cluster"
+# [Install]
+# WantedBy=multi-user.target
+# EOL'
+# else
+#   sudo bash -c 'cat >/lib/systemd/system/ipfs-cluster.service <<EOL
+# [Unit]
+# Description=ipfs-cluster-service daemon
+# Requires=ipfs.service
+# After=ipfs.service
+# [Service]
+# ExecStart=/usr/local/bin/ipfs-cluster-service daemon
+# Restart=always
+# User=ubuntu
+# Group=ubuntu
+# Environment="IPFS_CLUSTER_PATH=/data/ipfs-cluster"
+# [Install]
+# WantedBy=multi-user.target
+# EOL'
+# fi
 
 # enable the new services
 sudo systemctl daemon-reload
 sudo systemctl enable ipfs.service
-sudo systemctl enable ipfs-cluster.service
+# sudo systemctl enable ipfs-cluster.service
 
 # start the ipfs-cluster-service daemon (the ipfs daemon will be started first)
 sudo systemctl start ipfs
-sudo systemctl start ipfs-cluster
+# sudo systemctl start ipfs-cluster
