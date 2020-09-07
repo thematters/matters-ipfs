@@ -66,7 +66,7 @@ cd aws-scripts-mon
 ### Test Run without posting data to CloudWatch
 
 ```bash
-./mon-put-instance-data.pl --mem-util --mem-used --mem-avail --disk-space-util --disk-space-avail --disk-space-used --disk-path=/ --aws-access-key-id=AWS_ACCESS_KEY_ID --aws-secret-key=AWS_ACCESS_KEY
+./mon-put-instance-data.pl --mem-util --mem-used --mem-avail --disk-space-util --disk-space-avail --disk-space-used --disk-path=/ --verify --verbose --aws-access-key-id=AWS_ACCESS_KEY_ID --aws-secret-key=AWS_ACCESS_KEY
 ```
 
 ### Report to Cloudwatch Periodically
@@ -76,7 +76,7 @@ crontab -e
 ```
 
 ```bash
-*/5 * * * * ~/aws-scripts-mon/mon-put-instance-data.pl --mem-util --mem-used --mem-avail --disk-space-util --disk-space-avail --disk-space-used --disk-path=/ --from-cron --aws-access-key-id=AKIA5EVNH27J427XVOGD --aws-secret-key=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
+*/5 * * * * /home/ubuntu/aws-scripts-mon/mon-put-instance-data.pl --mem-util --mem-used --mem-avail --disk-space-util --disk-space-avail --disk-space-used --disk-path=/ --from-cron --aws-access-key-id=AKIA5EVNH27J427XVOGD --aws-secret-key=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
 ```
 
 ### References
