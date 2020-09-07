@@ -1,0 +1,24 @@
+version: "2"
+
+services:
+  # cluster:
+  #   image: ipfs/ipfs-cluster
+  #   volumes:
+  #     - /data/ipfs-cluster:/data/ipfs-cluster
+  #   env_file: .env
+  #   ports:
+  #     - 9094:9094
+  #     - 9095:9095
+  #     - 9096:9096
+  #   restart: always
+
+  daemon:
+    image: ipfs/go-ipfs
+    ports:
+      - 4001:4001
+      - 5001:5001
+      - 80:8080
+    volumes:
+      - /data/ipfs:/data/ipfs
+    restart: always
+    command: daemon --enable-gc
