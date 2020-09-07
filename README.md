@@ -10,8 +10,14 @@ docker-compose up -d
 
 ### Stop
 
-```
+```bash
 docker-compose down
+```
+
+### Garbage collection
+
+```bash
+docker-compose exec daemon ipfs repo gc
 ```
 
 ## Upsize EBS
@@ -70,7 +76,7 @@ crontab -e
 ```
 
 ```bash
-*/5 * * * * ~/aws-scripts-mon/mon-put-instance-data.pl --mem-util --mem-used --mem-avail --disk-space-util --disk-space-avail --disk-space-used --disk-path=/ --from-cron --aws-access-key-id=AWS_ACCESS_KEY_ID --aws-secret-key=AWS_ACCESS_KEY
+*/5 * * * * ~/aws-scripts-mon/mon-put-instance-data.pl --mem-util --mem-used --mem-avail --disk-space-util --disk-space-avail --disk-space-used --disk-path=/ --from-cron --aws-access-key-id=AKIA5EVNH27J427XVOGD --aws-secret-key=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
 ```
 
 ### References
