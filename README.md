@@ -4,6 +4,8 @@
 
 ### Start
 
+Start daemon with enabled automatic periodic repo garbage collection.
+
 ```bash
 docker-compose up -d
 ```
@@ -14,13 +16,13 @@ docker-compose up -d
 docker-compose down
 ```
 
-### Garbage collection
+### Garbage collection manually
 
 ```bash
 docker-compose exec daemon ipfs repo gc
 ```
 
-## Upsize EBS
+## Upsizing EBS
 
 ### Identifying the file system for a volume
 
